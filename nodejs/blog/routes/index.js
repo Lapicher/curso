@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/acerca/:name', function(req, res, next){
 	var nombre = req.params.name;
 	// realizar logica negocio
+	//res.status(400).send({name:nombre});
 	res.send("<h1> Mi nombre es: "+nombre+"</h1>");
 });
 
@@ -20,8 +21,12 @@ router.get('/acerca', function(req, res, next){
 		job : req.query.job
 	}
 	res.render('acerca', persona);
-})
+});
 
+// ejemplo redireccionando la peticion a otra url.
+router.get('/google', function(req, res, next){
+	res.redirect('http://www.google.com');
+});
 
 
 module.exports = router;
