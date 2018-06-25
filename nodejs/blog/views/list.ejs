@@ -1,0 +1,31 @@
+<html>
+  <head>
+      <title> <%= title %> </title>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  </head>
+  <body>
+    <h1> <%= title %> </h1>
+    <a href="add">Nuevo</a>
+    <div>
+      <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>ID</th>
+        </tr>
+        <% usuarios.forEach(function(usuario){ %>
+          <tr>
+              <td> <%= usuario.nombre %> </td>
+              <td> <%= usuario.apellido %> </td>
+              <td> <%= usuario.correo %> </td>
+              <td> <%= usuario._id %></td>
+              <td><a href="edit/<%= usuario._id %>">Editar</a></td>
+              <td><a href="delete/<%= usuario._id %>">Eliminar</a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>
