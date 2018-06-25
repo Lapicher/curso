@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Usuario = global.db.Usuario; // modelo de usuarios
 
+// ruta de listado de usuarios.
 router.get('/', function(req, res){
     Usuario.find().exec(function(err, usuarios){
         if(err) return res.status(500).send("Error al realizar la consulta a base de datos");
@@ -19,6 +20,7 @@ router.get('/add', function(req, res, next){
     });
 });
 
+// ruta de consulta de detalle de un usuario por ID.
 router.get('/ID/:id', function(req, res){
     Usuario.findById(req.params.id, function(err, usuario){
         if(err) return res.status(500).send("ID de usuario incorrecto");
@@ -26,6 +28,7 @@ router.get('/ID/:id', function(req, res){
     });
 });
 
+// ruta de guardado del usuario por medio del formulario.
 router.post('/guardar', function(req, res, next){
     var nuevoUsuario = new Usuario({
        nombre : req.body.nombre,
@@ -38,7 +41,5 @@ router.post('/guardar', function(req, res, next){
         res.redirect('./'); // http://192.168.56.101:3000/usuarios/
     });
 });
-
-
 
 module.exports = router;

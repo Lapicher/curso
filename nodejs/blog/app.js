@@ -20,8 +20,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// rutas Web. Sirviendo paginas o archivos HTML.
 app.use('/', indexRouter);
 app.use('/usuarios', usersRouter);
+// app.use 'comentarios'
+
+// rutas APIs
+//app.use('/api/usuario', usersApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
