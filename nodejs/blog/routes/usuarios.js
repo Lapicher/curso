@@ -10,12 +10,19 @@ router.get('/', function(req, res){
             usuarios  : usuarios
         });
     })
-})
+});
 
 // ruta que muestra html de registro de usuarios
 router.get('/add', function(req, res, next){
     res.render('register', {
       title: "Registro de Usuarios"
+    });
+});
+
+router.get('/ID/:id', function(req, res){
+    Usuario.findById(req.params.id, function(err, usuario){
+        if(err) return res.status(500).send("ID de usuario incorrecto");
+        res.send(usuario);
     });
 });
 
@@ -31,5 +38,7 @@ router.post('/guardar', function(req, res, next){
         res.redirect('./'); // http://192.168.56.101:3000/usuarios/
     });
 });
+
+
 
 module.exports = router;
