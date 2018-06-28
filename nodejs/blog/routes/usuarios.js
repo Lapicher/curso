@@ -28,6 +28,23 @@ router.get('/ID/:id', function(req, res){
     });
 });
 
+// ruta para renderizar pantalla de edicion.
+router.get('/edit/:id', function(req, res){
+    var idusuario = req.params.id;
+    Usuario.findById(idusuario, function(err, usuario){
+        if(err) return res.status(500).send("ID de usuario incorrecto");
+        res.render('edit', {
+            title : "Editar Usuario",
+            usuario : usuario
+        });
+    })
+});
+
+// ruta para escuchar la actualizacion del formulario editar.
+router.post('/editar/:idusuario', function(req, res){
+    
+});
+
 // ruta de guardado del usuario por medio del formulario.
 router.post('/guardar', function(req, res, next){
     var nuevoUsuario = new Usuario({
