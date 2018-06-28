@@ -3,12 +3,17 @@
       <title> <%= title %> </title>
       <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+      <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+      <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
     <h1> <%= title %> </h1>
 
     <div class="container">
-        <a class="waves-effect waves-light btn" href="add">Nuevo</a>
+        <a class="waves-effect waves-light btn" href="/usuarios/add">Nuevo</a>
     </div>
 
     <div class="container">
@@ -25,11 +30,20 @@
               <td> <%= usuario.apellido %> </td>
               <td> <%= usuario.correo %> </td>
               <td> <%= usuario._id %></td>
-              <td><a href="edit/<%= usuario._id %>">Editar</a></td>
-              <td><a href="delete/<%= usuario._id %>">Eliminar</a></td>
+              <td><a href="/usuarios/edit/<%= usuario._id %>">Editar</a></td>
+              <td><a id="delete" href="/usuarios/delete/<%= usuario._id %>">Eliminar</a></td>
           </tr>
         <% }) %>
       </table>
     </div>
+    <script>
+          // validar con un mensaje de confirmacion, la eliminacion del usuario.
+    </script>
+    <script>
+        var socket = io();
+        socket.on("alerta", function(data){
+            alert(data.text);
+        })
+    </script>
   </body>
 </html>

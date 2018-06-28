@@ -29,6 +29,19 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+var socketsIO = require('socket.io');
+var io = socketsIO.listen(server);
+io.on('connection', function(socket){
+    console.log("Nuevo cliente socket conectado");
+    io.sockets.emit('mensaje', {
+        text : "Nuevo cliente conectado"
+    });
+    io.sockets.emit("otro", {text: "Otro mensaje"});
+});
+io.on("alerta", function(data){
+    // logica de accion
+
+});
 /**
  * Normalize a port into a number, string, or false.
  */

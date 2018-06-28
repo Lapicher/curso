@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title><%= title %></title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    </head>
+    <body>
+      <h1><%= title %></h1>
+      <form action="/usuarios/editar/<%= usuario._id %>" method="post" class="container">
+        <div>
+            Nombre: <br>
+            <input type="text" name="nombre" value="<%= usuario.nombre %>">
+        </div>
+        <div>
+            Apellido: <br>
+            <input type="text" name="apellido" value="<%= usuario.apellido %>">
+        </div>
+        <div>
+            Correo: <br>
+            <input type="text" name="correo" value="<%= usuario.correo %>">
+        </div>
+        <button type="submit" class="btn waves-effect waves-light">Guardar</button>
+      </form>
+    </body>
+</html>

@@ -41,8 +41,22 @@ router.get('/edit/:id', function(req, res){
 });
 
 // ruta para escuchar la actualizacion del formulario editar.
-router.post('/editar/:idusuario', function(req, res){
-    
+router.post('/editar/:idusuario/', function(req, res){
+  /*
+        DATOS DEL FORM
+    {
+        nombre : "NAtaly",
+        apellido : "Contra",
+        correo : "correo"
+    }
+    */
+    var usuario = req.body;
+    Usuario.findByIdAndUpdate(req.params.idusuario, usuario, function(err, usuario){
+        if(err) return res.status(500).send("Error al actualizar usuario");
+        res.redirect('/usuarios');
+        //res.render("listo", {msg: "Usuario Actualizado"});
+        //res.send("Usuario Actualizado");
+    });
 });
 
 // ruta de guardado del usuario por medio del formulario.
@@ -55,7 +69,15 @@ router.post('/guardar', function(req, res, next){
 
     nuevoUsuario.save(function(err, usuario){
         if(err) res.json(err);
-        res.redirect('./'); // http://192.168.56.101:3000/usuarios/
+        res.redirect('/usuarios'); // http://192.168.56.101:3000/usuarios/
+    });
+});
+
+// ruta para eliminar usuario.
+router.get('/delete/:id', function(req, res){
+    Usuario.findByIdAndRemove(req.params.id, function(err, usuario){
+        if(err) return res.status(500).send("Error al eliminar usuario");
+        res.redirect('/usuarios');
     });
 });
 
