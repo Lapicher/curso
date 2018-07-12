@@ -1,1 +1,4 @@
 nodejs/blog/node_modules/
+python_Django/mysite/*.sqlite3
+python_Django/mysite/static/
+*.pyc
